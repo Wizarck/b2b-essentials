@@ -20,5 +20,10 @@
     "psr-4": {
       "B2bEssentials\\Tests\\": "tests/"
     }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
