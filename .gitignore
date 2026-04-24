@@ -1,9 +1,10 @@
-vendor/
-node_modules/
 *.log
+*.zip
 .DS_Store
-Thumbs.db
 .env
 .phpunit.result.cache
+Thumbs.db
+composer.lock
 coverage/
-*.zip
+node_modules/
+vendor/
