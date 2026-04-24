@@ -32,6 +32,9 @@ final class NifFieldManager {
 		add_action( 'woocommerce_checkout_process', array( $this, 'validate_on_checkout' ) );
 		add_action( 'woocommerce_checkout_update_user_meta', array( $this, 'persist_on_checkout' ), 10, 2 );
 		add_action( 'woocommerce_checkout_order_created', array( $this, 'schedule_vies_check' ) );
+		// Consumer for the Action Scheduler job we enqueue in schedule_vies_check().
+		// Without this the job runs and nothing processes it.
+		add_action( 'b2b_essentials_vies_check', array( $this, 'run_vies_check' ), 10, 2 );
 	}
 
 	public function add_field( array $fields ): array {
