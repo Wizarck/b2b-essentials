@@ -37,6 +37,18 @@ if ( file_exists( B2B_ESSENTIALS_PATH . 'vendor/autoload.php' ) ) {
 	require_once B2B_ESSENTIALS_PATH . 'vendor/autoload.php';
 }
 
+// Register activation hook at plugin load — registering from a
+// plugins_loaded callback is too late because WP has already fired
+// activate_* by then.
+register_activation_hook(
+	__FILE__,
+	function () {
+		if ( class_exists( '\B2bEssentials\Roles\RoleManager' ) ) {
+			\B2bEssentials\Roles\RoleManager::register_roles();
+		}
+	}
+);
+
 add_action(
 	'plugins_loaded',
 	function () {

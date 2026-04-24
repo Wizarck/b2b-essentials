@@ -30,8 +30,10 @@ final class Plugin {
 	}
 
 	public function boot(): void {
-		register_activation_hook( B2B_ESSENTIALS_PATH . 'b2b-essentials.php', array( RoleManager::class, 'register_roles' ) );
-
+		// NOTE: register_activation_hook only works when called at plugin load
+		// time (see b2b-essentials.php). Role registration is also performed on
+		// every `init` via RoleManager::init() as an idempotent self-heal, so
+		// fresh activations where this boot() runs post-activation are covered.
 		RoleManager::init();
 
 		$nif_validator = new NifValidator();
